@@ -26,7 +26,7 @@ function caesar(input, shift, encode = true) {
       let charIndex = alphabet.indexOf(current0); // use index location to find corresponding substitution character. 
 
       if (charIndex + shift > 25) { 
-        charIndex -= 26;      // if true subtract 25. 
+        charIndex -= 26;      // if true subtract 26. 
       } else if (charIndex + shift < -25) {   
         charIndex += 26;      // Add 26 when false. 
       }

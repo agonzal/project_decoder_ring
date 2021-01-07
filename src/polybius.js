@@ -3,17 +3,15 @@
 
 function polybius(input, encode = true) {
   if (!input) return false;
-  if (typeof input !== 'string') return false; // verify our input is a string return false otherwise. 
-  
-  //if((input.trim().length)%2 != 0) return false
-    let specialChars = '~`!#$%^&*+=-[]\\\';,/{}|":<>?';   // regex for special characters. 
+  if (typeof input !== 'string') return false; // verify our input is a string return false otherwise.
+
+  let specialChars = '~`!#$%^&*+=-[]\\\';,/{}|":<>?'; // regex for special characters.
   for (let i = 0; i < input.length; i++) {
-    
-    if (specialChars.indexOf(input[i]) !== -1) return false; 
+    if (specialChars.indexOf(input[i]) !== -1) return false;
   }
 
- 
   const inputs = input.toLowerCase();
+
   if (encode) {
     const polyGrid = {
       a: 11,
@@ -52,9 +50,11 @@ function polybius(input, encode = true) {
       .join('');
   }
   if (!encode) {
-   
-    const whiteSpace = inputs.replace(/[ ]+/g, 56);  // preserve white-space. 
-    if (whiteSpace.length % 2 !== 0) return false; // input length not even ? return false. 
+    // preserve white-space. convert to 56:: will match polyGrid inside decode if statement.
+    const whiteSpace = inputs.replace(/[ ]+/g, 56); // convert whitespaces to numeric value from grid. 
+    
+    if (whiteSpace.length % 2 !== 0) return false; // input length w/o spaces not even ?
+
     const polyGrid = {
       11: 'a',
       21: 'b',
@@ -64,7 +64,7 @@ function polybius(input, encode = true) {
       12: 'f',
       22: 'g',
       32: 'h',
-      42: '(i/j)',  // special case for i/j 
+      42: '(i/j)', // Now there is no need for a special check.
       52: 'k',
       13: 'l',
       23: 'm',
@@ -83,12 +83,13 @@ function polybius(input, encode = true) {
       55: 'z',
       56: ' ',
     };
+
     let results = [];
     for (let i = 0; i < whiteSpace.length; i += 2) {
-      let num = whiteSpace[i] + whiteSpace[i + 1];
+      let num = whiteSpace[i] + whiteSpace[i + 1]; // 2 nums represent a character, need to pair them for decode.
       results.push(polyGrid[num]);
     }
-    return results.join('');
+    return results.join(''); // return the final result.
   }
 }
 

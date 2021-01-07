@@ -4,13 +4,23 @@
     Albert Gonzalez <albertg@cerveau.us>
     */
 
+function isUnique(str) {
+  return new Set(str).size === str.length;
+}
+
 function substitution(input, alphabet, encode = true) {
   const theAlphabet = 'abcdefghijklmnopqrstuvwxyz'; // self explanatory
-  const sorted = alphabet.split('').sort().join(''); // split then sort then join input. 
-  if (alphabet.length !== 26 || theAlphabet !== sorted) return false;
+  // const sorted = alphabet.split('').join(''); // split then sort then join input. 
+  // if (!input || alphabet.length !== 26 || typeof alphabet !== 'string' || typeof input !== 'string') return false;
+
+  if (!alphabet || alphabet.length !== 26 || !input) return false;
+
+  if ( isUnique(alphabet) === false) return false; 
+
+  
 
   const sortedAlphabet = theAlphabet.split('');
-  const randomAlphabet = alphabet.split('');
+  const randomAlphabet = alphabet.split('').join('');
   const result = [];
 
   if (encode) { // default unless stated otherwise. 
@@ -26,7 +36,7 @@ function substitution(input, alphabet, encode = true) {
           // match character at index location from key.  
           tmpVar += randomAlphabet[sortedAlphabet.indexOf(character)];
         });
-        result.push(tmpVar); // push to result array. 
+        result.push(tmpVar); // push to result array. Ss
       });
   } else { // now we do it reverse to decode. use sortedAlphabet now. 
     input
