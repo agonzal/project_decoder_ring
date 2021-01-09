@@ -1,4 +1,4 @@
-/* eslint-disable strict */
+
 const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
 function caesar(input, shift, encode = true) {
@@ -18,27 +18,33 @@ function caesar(input, shift, encode = true) {
   for (let word in words) { // iterate over [words] 
     
     const currentWord = words[word];
+    let emptyStr = '';
 
     for (let letter in currentWord) { // iterate each word to retrieve each character. 
      
       const current0 = currentWord[letter];
 
-      let charIndex = alphabet.indexOf(current0); // use index location to find corresponding substitution character. 
+      let charIndex = alphabet.indexOf(current0) + shift; // use index location to find corresponding substitution character. 
 
-      if (charIndex + shift > 25) { 
+      if (charIndex > 25) { 
         charIndex -= 26;      // if true subtract 26. 
-      } else if (charIndex + shift < -25) {   
+      } else if (charIndex < 0) {   
         charIndex += 26;      // Add 26 when false. 
       }
      
-      result.push(alphabet[charIndex + shift]);
+      emptyStr += alphabet[charIndex];
+
       // push character at that index point + shift value to result array.
     }
-    result.push(' ');
+    result.push(emptyStr);
     
   }
-  result.pop();
-  return result.join('');   // return the final result adding whitespaces. 
+  
+  return result.join(' ');   // return the final result adding whitespaces. 
 }
 
 module.exports = caesar;
+
+
+
+

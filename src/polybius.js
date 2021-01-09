@@ -2,15 +2,13 @@
 //
 
 function polybius(input, encode = true) {
-  if (!input) return false;
-  if (typeof input !== 'string') return false; // verify our input is a string return false otherwise.
+  
+  // Required to validate input and verify no special characters. Regex globally looks for non alphanumeric or spaces. 
+  if (!input || typeof input !== 'string' || input.match(/([^a-zA-Z\d\s:])/g) ) return false;
+  
 
-  let specialChars = '~`!#$%^&*+=-[]\\\';,/{}|":<>?'; // regex for special characters.
-  for (let i = 0; i < input.length; i++) {
-    if (specialChars.indexOf(input[i]) !== -1) return false;
-  }
 
-  const inputs = input.toLowerCase();
+  const inputs = input.toLowerCase(); // Ignore cases (requiremet)
 
   if (encode) {
     const polyGrid = {
@@ -50,10 +48,11 @@ function polybius(input, encode = true) {
       .join('');
   }
   if (!encode) {
-    // preserve white-space. convert to 56:: will match polyGrid inside decode if statement.
-    const whiteSpace = inputs.replace(/[ ]+/g, 56); // convert whitespaces to numeric value from grid. 
     
-    if (whiteSpace.length % 2 !== 0) return false; // input length w/o spaces not even ?
+    // Requirement to preserve whitespaces throughout. 
+    const whiteSpace = inputs.replace(/[ ]+/g, 56);  
+    
+    if (whiteSpace.length % 2 !== 0) return false; // Requirement to verify input w/o spaces is even. 
 
     const polyGrid = {
       11: 'a',
@@ -64,7 +63,7 @@ function polybius(input, encode = true) {
       12: 'f',
       22: 'g',
       32: 'h',
-      42: '(i/j)', // Now there is no need for a special check.
+      42: '(i/j)', // Now there is no need for a special check. (requirement)
       52: 'k',
       13: 'l',
       23: 'm',

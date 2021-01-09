@@ -17,10 +17,9 @@ describe('substitution', () => {
 
   it('Capital letters can be ignored.', () => {
     const expected = 'mfgufmmhufg';
-    const actual1 = substitution('engineering', 'xoyqmcgrukswaflnthdjpzibev');
-    const actual2 = substitution('ENGINEERING', 'xoyqmcgrukswaflnthdjpzibev');
+    const actual = substitution('ENGINEERING', 'xoyqmcgrukswaflnthdjpzibev');
 
-    expect(actual1 && actual2).to.equal(expected);
+    expect(actual).to.equal(expected);
   });
 
   it('The alphabet parameter must be string of exactly 26 characters. Otherwise, it should return false.', () => {
@@ -29,7 +28,7 @@ describe('substitution', () => {
     expect(actual).to.be.false;
   });
 
-  it('Corrently translates the given phrase based on the alphabet passed', () => {
+  it('Correctly translates the given phrase based on the alphabet passed', () => {
     const expected = 'rnnvihrlm';
     const actual = substitution('immersion', 'zyxwvutsrqponmlkjihgfedcba');
 

@@ -4,7 +4,7 @@
     Albert Gonzalez <albertg@cerveau.us>
     */
 
-function isUnique(str) {
+function isUnique(str) {    // helper function to check input alphabet is unique. 
   return new Set(str).size === str.length;
 }
 
@@ -36,7 +36,7 @@ function substitution(input, alphabet, encode = true) {
           // match character at index location from key.  
           tmpVar += randomAlphabet[sortedAlphabet.indexOf(character)];
         });
-        result.push(tmpVar); // push to result array. Ss
+        result.push(tmpVar); // push to result array. 
       });
   } else { // now we do it reverse to decode. use sortedAlphabet now. 
     input
