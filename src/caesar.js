@@ -10,7 +10,7 @@ function caesar(input, shift, encode = true) {
 
   let result = [];
 
-  if (!encode) shift = 0 - shift; // set initial shift. 
+  if (!encode) shift = 0 - shift; // set initial shift. ls
 
   const words = input.toLowerCase().split(' '); // iterate over input, split string into individual words.  
   
