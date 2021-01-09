@@ -10,7 +10,7 @@ function caesar(input, shift, encode = true) {
 
   let result = [];
 
-  if (!encode) shift = 0 - shift; // 
+  if (!encode) shift = 0 - shift; // set initial shift. 
 
   const words = input.toLowerCase().split(' '); // iterate over input, split string into individual words.  
   
@@ -34,7 +34,7 @@ function caesar(input, shift, encode = true) {
      
       emptyStr += alphabet[charIndex];
 
-      // push character at that index point + shift value to result array.
+        // push character at that index point to result array.
     }
     result.push(emptyStr);
     
