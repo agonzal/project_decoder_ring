@@ -10,7 +10,7 @@ function caesar(input, shift, encode = true) {
 
   let result = [];
 
-  if (!encode) shift = 0 - shift; // set initial shift. ls
+  if (!encode) shift = 0 - shift; // set initial shift. 
 
   const words = input.toLowerCase().split(' '); // iterate over input, split string into individual words.  
   
@@ -24,19 +24,27 @@ function caesar(input, shift, encode = true) {
      
       const current0 = currentWord[letter];
 
+      if (current0.match(/([a-z])/g)) {   // is character an alphabet letter (a to z)
+
       let charIndex = alphabet.indexOf(current0) + shift; // use index location to find corresponding substitution character. 
 
       if (charIndex > 25) { 
-        charIndex -= 26;      // if true subtract 26. 
+        emptyStr += alphabet[charIndex - 26];      // if true subtract 26. 
       } else if (charIndex < 0) {   
-        charIndex += 26;      // Add 26 when false. 
+        emptyStr += alphabet[charIndex + 26];      // Add 26 when false. 
+      } else {
+        emptyStr += alphabet[charIndex];
       }
-     
-      emptyStr += alphabet[charIndex];
-
-        // push character at that index point to result array.
+    } else {                                       //  if it isnt an alphabet character, add it to emptyStr. 
+      
+      emptyStr += current0;
+    
     }
-    result.push(emptyStr);
+
+        
+    } 
+   
+    result.push(emptyStr);    // push character at that index point to result array.
     
   }
   
